@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import {Route,Routes} from 'react-router-dom'
 import './App.css';
-
+import NavBar from './Components/NavBar';
+import UserList from './Components/UserList';
+import Error from './Pages/Error';
+import Home from './Pages/Home';
+import Profile from './Pages/Profile';
+//import Private from './Routes/Private';
+import Admin from './Pages/Admin';
 function App() {
+  //const [isAuth, setIsAuth] = useState(false)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar/>
+      <h1>Workshop Api</h1>
+      
+      <Routes>
+      <Route path='/'element={<Home/>}/>
+      <Route path='users'element={<UserList/>}/>
+      <Route path='/:id'element={<Profile/>}/>
+      <Route path='/admin'element={<Admin/>}/>
+
+      <Route path='/*'element={<Error/>}/>
+      </Routes>
+    
     </div>
   );
 }
